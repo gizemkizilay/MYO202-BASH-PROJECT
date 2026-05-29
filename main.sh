@@ -14,18 +14,20 @@ echo "----------------------------------------" >> "$LOG_FILE"
 echo "=== Windows Donanım Bilgileri ===" >> "$LOG_FILE"
 echo "[İşlemci]" >> "$LOG_FILE"
 wmic cpu get name >> "$LOG_FILE"
-echo "[RAM]" >> "$LOG_FILE"
+echo "[RAM (Kapasite)]" >> "$LOG_FILE"
 wmic memorychip get capacity >> "$LOG_FILE"
 echo "[Anakart]" >> "$LOG_FILE"
 wmic baseboard get product >> "$LOG_FILE"
 echo "[UUID]" >> "$LOG_FILE"
 wmic csproduct get uuid >> "$LOG_FILE"
+echo "[Disk (Marka, Model, Seri No, Kapasite)]" >> "$LOG_FILE"
+wmic diskdrive get model,serialnumber,size >> "$LOG_FILE"
 echo "[MAC Adresi]" >> "$LOG_FILE"
 getmac >> "$LOG_FILE"
 
-read -s -p "Lutfen parolayi giriniz (MYO+202): " PAROLA
+# MYO+202 yazısı kaldırıldı, sadece parola isteniyor
+read -s -p "Lutfen kriptolama parolasini giriniz: " PAROLA
 echo "" 
-
 
 echo "$PAROLA" | gpg --batch --yes --passphrase-fd 0 --symmetric --cipher-algo AES256 -o report.log.gpg "$LOG_FILE"
 
