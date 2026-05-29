@@ -36,3 +36,4 @@ if [ -f "report.log.gpg" ]; then
 else
     echo "Sifreleme sirasinda bir hata olustu!"
 fi
+
