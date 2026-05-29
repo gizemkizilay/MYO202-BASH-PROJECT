@@ -25,7 +25,6 @@ wmic diskdrive get model,serialnumber,size >> "$LOG_FILE"
 echo "[MAC Adresi]" >> "$LOG_FILE"
 getmac >> "$LOG_FILE"
 
-# MYO+202 yazısı kaldırıldı, sadece parola isteniyor
 read -s -p "Lutfen kriptolama parolasini giriniz: " PAROLA
 echo "" 
 
